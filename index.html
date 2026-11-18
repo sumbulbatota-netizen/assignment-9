@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //  Q1. Bank Account Withdrawal
+      let balance = 10000;
+      let withdrawAmount = 7000;
+
+      let bankPromise = new Promise(function (resolve, reject) {
+        if (balance >= withdrawAmount) {
+          resolve(
+            "Withdrawal Successful! Remaining Balance: Rs. " +
+              (balance - withdrawAmount),
+          );
+        } else {
+          reject("Insufficient Balance!");
+        }
+      });
+      bankPromise
+        .then(function (result) {
+          console.log(result);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+      //  Q2. Online Exam Result
+      let marks = 75;
+      let examPromise = new Promise(function (resolve, reject) {
+        if (marks > 100 || marks < 0) {
+          reject("Invalid marks.");
+        } else if (marks >= 50) {
+          resolve("Pass.");
+        } else {
+          reject("Fail.");
+        }
+      });
+      examPromise
+        .then(function (result) {
+          console.log("Marks: " + marks + " - " + result);
+        })
+        .catch(function (error) {
+          console.log("Marks: " + marks + " - " + error);
+        });
+
+      // Q3. Product Delivery System
+      let deliveryPromise = new Promise(function (resolve, reject) {
+        let isDelivered = true;
+        setTimeout(function () {
+          if (isDelivered) {
+            resolve("Product Delivered Successfully...");
+          } else {
+            reject("Delivery Failed!");
+          }
+        }, 3000);
+      });
+      deliveryPromise
+        .then(function (result) {
+          console.log(result);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+      // Q4. Promise Chaining
+      let chainPromise = new Promise(function (resolve, reject) {
+        resolve(10);
+      });
+      chainPromise
+        .then(function (num) {
+          return num + 20;
+        })
+        .then(function (num) {
+          return num * 2;
+        })
+        .then(function (num) {
+          return num - 5;
+        })
+        .then(function (result) {
+          console.log("Final Result: " + result);
+        });
+    </script>
+    
+</body>
+</html>
